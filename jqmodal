@@ -1,0 +1,25 @@
+function jqmodal(){
+jQuery(document).ready(function ($) {
+    $("#presupuesto").submit(function () {
+        $.ajax({
+            type: "POST",
+            url: "https://intermaquinas.online/mailfunction.php",
+            
+            data: $('form.noteform').serialize(),
+            success: function (msg) {
+                $("#thanks").html(msg);
+                var cuerpogracias = document.getElementsByClassName("modal-body mx-3")[0].innerText="TODO OK, gracias por su mensaje";
+                //$(".noteform").hide(5000);
+                 //$("#modalLoginForm").modal("hide");
+                 setTimeout(function(){
+    $("#modalLoginForm").modal('hide')
+    }, 5000);
+            },
+            error: function () {
+                alert("Algo salió mal :-(");
+            }
+        });
+        return false;
+    });
+});
+}
